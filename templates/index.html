@@ -148,19 +148,7 @@
             });
             $('#message-box').on('submit', function (e) {
                 e.preventDefault(); // prevent the form from submitting
-                // get the form data
-                var formData = {
-                    translation_request: $('#message').val()
-                };
-                // send the POST request using AJAX
-                $.ajax({
-                    type: 'POST',
-                    url: '/submit',
-                    data: formData,
-                    success: function (response) {
-                        $('#result').text(response); // display the response in the result div
-                    }
-                });
+                callFunction(); // Funktion kautta
             });
         });
     </script>
