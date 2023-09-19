@@ -13,32 +13,38 @@
         var formData = {
             translation_request: $('#message').val()
         };
+
+
+        // Add animation class to the image
+        $(".image").attr("src", "{{ url_for('static', filename='papukaija_miettii.png') }}")
+        $(".image").addClass("bounce");
+
+
         // send the POST request using AJAX
         $.ajax({
             type: 'POST',
             url: '/submit',
             data: formData,
             success: function (response) {
-                // Create a new observer instance
-                var observer = new MutationObserver(function () {
-                    // Revert the changes to .image
-                    $(".image").attr("src", "{{ url_for('static', filename='papukaija.png') }}")
-                    $(".image").removeClass("bounce");
-                    // Disconnect the observer after reverting the changes
-                    observer.disconnect();
-                });
-    
-                // Configure the observer to watch for changes in the #result element
-                observer.observe(document.getElementById("result"), { childList: true });
-                
-                // Display the response in the result div
-                $('#result').text(response);
-    
-                // Add animation class to the image
-                $(".image").attr("src", "{{ url_for('static', filename='papukaija_miettii.png') }}")
-                $(".image").addClass("bounce");
+                $('#result').text(response); // display the response in the result div
             }
         });
+
+        var observer = new MutationObserver(function () {
+            // Revert the changes to .image
+            $(".image").attr("src", "{{ url_for('static', filename='papukaija.png') }}")
+            $(".image").removeClass("bounce");
+            // Disconnect the observer after reverting the changes
+            observer.disconnect();
+        });
+
+        // Configure the observer to watch for changes in the #result element
+        observer.observe(document.getElementById("result"), {childList: true});
+
+        // Display the response in the result div
+        $('#result').text(response);
+
+    }
     </script>
 </head>
 <body>
