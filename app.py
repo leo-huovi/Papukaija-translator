@@ -23,7 +23,7 @@ def submit():
 
    random_number = random.randint(0,100)
 
-   return f'{translation_request}. Ja satunnainen luku: {random_number}'
+   return f'{translation_request}. Ja luku: {random_number}'
 
 if __name__ == '__main__':
    app.run(debug=True)
