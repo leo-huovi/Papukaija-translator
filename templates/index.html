@@ -109,7 +109,7 @@
 
             function handleChange() {
                 clearTimeout(timeoutId); // Clear any previous timeout
-                timeoutId = setTimeout(callFunction, 1000); // Set a new timeout of 1 second
+                timeoutId = setTimeout(callFunction, 500); // Set a new timeout of 1 second
             }
 
             function callFunction() {
@@ -172,7 +172,7 @@
         <textarea id="message" name="message" autofocus="autofocus" spellcheck="false"></textarea>
         <button type="submit" id="bottom_filler">Submit</button>
     </form>
-    <img src="url_for('static', filename='image/dino1.svg')" class="child image" alt="dino_image">
+    <img src="{{ url_for('static', filename='dino1.svg') }}" class="child image" alt="dino_image">
     <div id="result-box" class="child">
         <span id="enkku_label">Englanniksi:</span>
         <div id="result"></div>
