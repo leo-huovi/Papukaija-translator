@@ -19,11 +19,11 @@ def home():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-   translation_request = request.form["translation_request" ]
+   kaannos_pyynto = request.form["translation_request" ]
 
    random_number = random.randint(0,100)
 
-   kaannos = pipe("translation_request")
+   kaannos = pipe(kaannos_pyynto)
 
    return f'{kaannos}'
 
