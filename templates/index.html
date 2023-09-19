@@ -141,9 +141,8 @@
 
 
             $("#message").keypress(function (e) {
-                if (e.which === 13 && !e.shiftKey) {
-                    e.preventDefault();
-                    $(this).closest("form").submit();
+                if (e.which === 13) {
+                    event.stopPropagation();
                 }
             });
             $('#message-box').on('submit', function (e) {
