@@ -20,4 +20,4 @@ ENV HOME=/home/user \
 COPY . .
 
 #CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+CMD [ "gunicorn", "-b" , "0.0.0.0:7860", "main:app"]
