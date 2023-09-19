@@ -5,18 +5,31 @@
             height: 100%;
             margin: 0;
         }
-        #bottom_filler {
+
+
+        .kielen_nimi {
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            padding-top: 0.3em;
+            font-size: 40px;
+            color: #102f21;
+        }
+
+        .bottom_filler {
             height: 1.5em;
             margin-bottom: 1em;
         }
+
         #message-box, #result-box {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-direction: column;
-            border: 2px solid #000;
+            border: 2px solid #3b6b56;
             border-radius: 10px;
+            background-color: #9bcbb6;
         }
+
         #message, #result {
             width: 100%;
             height: 50%;
@@ -26,6 +39,7 @@
             min-width: 100%;
             padding: 1em;
             border: none;
+            background-color: #acdac6;
             box-sizing: border-box;
             overflow-y: scroll;
             white-space: normal;
@@ -35,19 +49,23 @@
             font-size: 1em;
             resize: none;
         }
+
         #message:focus {
             outline: none !important;
             border: none;
             box-shadow: none;
         }
+
         #message::-webkit-resizer {
             display: none;
         }
+
         body {
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .container {
             flex-direction: row;
             display: flex;
@@ -58,9 +76,15 @@
             box-sizing: border-box;
             margin-top: -10%;
         }
+
         .image {
-            max-width: 15%;
+            max-height: 300px;
+            width: 15%;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            margin: 0 1.5em; /* Add margin here */
         }
+
         .child {
             max-height: 600px;
             width: 45%;
@@ -69,6 +93,7 @@
             box-sizing: border-box;
             margin: 0 2.5em; /* Add margin here */
         }
+
         @keyframes bounce {
             0% {
                 transform: translateY(0);
@@ -83,9 +108,25 @@
                 transform: translateY(0);
             }
         }
+
         .bounce {
             animation: bounce 0.5s;
         }
+
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 16px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            line-height: 0.1;
+            border-radius: 20px;
+        }
+
+
     </style>
     <title>Flask Form Submission without Page Reload</title>
     <link rel="stylesheet" type="text/css" href="static/style.css">
@@ -95,8 +136,9 @@
             var timeoutId; // Variable to store the timeout ID
             function handleChange() {
                 clearTimeout(timeoutId); // Clear any previous timeout
-                timeoutId = setTimeout(callFunction, 750); // Set a new timeout of 1 second
+                timeoutId = setTimeout(callFunction, 500); // Set a new timeout of 1 second
             }
+
             function callFunction() {
                 // get the form data
                 var formData = {
@@ -112,20 +154,18 @@
                     }
                 });
                 // alert("This is a pop-up message.");
-
-                // Animaatio - dinosaurus pomppii
+                // Add animation class to the image
                 $(".image").attr("src", "{{ url_for('static', filename='papukaija_miettii.png') }}")
                 $(".image").addClass("bounce");
-
+                // Remove animation class after 1 second
                 setTimeout(function () {
                     $(".image").attr("src", "{{ url_for('static', filename='papukaija.png') }}")
                     $(".image").removeClass("bounce");
                 }, 700);
             }
+
             const textarea = document.getElementById("message"); // Replace "message" with the ID of your textarea element
             textarea.addEventListener("input", handleChange);
-
-            {#ENTERIÄ PAINETTAESSA SAMA - EI REFRESHIÄ#}
             $("#message").keypress(function (e) {
                 if (e.which === 13) {
                     e.preventDefault();
@@ -144,16 +184,17 @@
 <body>
 <div class="container">
     <form id="message-box" class="child">
-        <span id="suomi_label">Englanniksi:</span>
-        <textarea id="message" name="message" autofocus="autofocus" spellcheck="false"></textarea>
-        <button id="bottom_filler">Submit</button>
+        <span class="kielen_nimi">Write in english:</span>
+        <textarea id="message" name="message" autofocus="autofocus" spellcheck="false"
+                  placeholder="write here!"></textarea>
+        <button class="bottom_filler">Translate! 🇫🇮</button>
     </form>
 
-    <img src="{{ url_for('static', filename='papukaija.png') }}" class="child image" alt="dino_image">
+    <img src="{{ url_for('static', filename='papukaija.png') }}" class="image" alt="papukaija_image">
     <div id="result-box" class="child">
-        <span id="enkku_label">Suomeksi:</span>
+        <span class="kielen_nimi">🇫🇮  Suomeksi 🇫🇮 </span>
         <div id="result"></div>
-        <span id="bottom_filler"></span>
+        <span class="bottom_filler"></span>
     </div>
 </div>
 </body>
