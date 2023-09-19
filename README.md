@@ -1,12 +1,11 @@
 # 🍹🦜 Papukaija-kääntäjä 🦜🍹
-![image](https://github.com/leo-huovi/Papukaija-translator/assets/37000065/39c72e6f-8676-49af-b55b-ba8c745945f4)
+![output](https://github.com/leo-huovi/Papukaija-translator/assets/37000065/811da790-a932-4c62-9aba-cb64c836efb3)
 
+Hosted on HuggingFace: [https://huggingface.co/spaces/leo-huovi/Papukaija-translator](https://huggingface.co/spaces/leo-huovi/Papukaija-translator)
 
-**An English-> Finnish translator API.** Hosted on Hugging Face.
+**An English-> Finnish translator API.** I made this little app as a part of a Metropolia project application process, and also to practice app deployment on Hugging Face.
 
 This API registers your input automatically after ~1 second, and displays a little animation (parrot jumping around) to indicate query is being processed.
-
-Try to write in full sentences, to help the AI with proper context.
 
 The user interface is responsive and optimized for mobile window sizes.
 
