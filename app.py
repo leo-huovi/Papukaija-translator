@@ -1,6 +1,12 @@
+import os
 from flask import Flask, render_template, request
 import random
 from transformers import pipeline
+
+
+
+os.environ['SENTENCE_TRANSFORMERS_HOME'] = './.cache'
+
 
 pipe = pipeline("translation", model="Helsinki-NLP/opus-mt-en-fi")
 
