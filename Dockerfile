@@ -15,7 +15,7 @@ USER user
 ENV HOME=/home/user \
 	PATH=/home/user/.local/bin:$PATH
 
-RUN mkdir ./.cache
+#RUN mkdir ./.cache
 
 COPY . .
 
