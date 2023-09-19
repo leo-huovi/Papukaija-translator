@@ -19,19 +19,26 @@
             url: '/submit',
             data: formData,
             success: function (response) {
-                $('#result').text(response); // display the response in the result div
+                // Create a new observer instance
+                var observer = new MutationObserver(function () {
+                    // Revert the changes to .image
+                    $(".image").attr("src", "{{ url_for('static', filename='papukaija.png') }}")
+                    $(".image").removeClass("bounce");
+                    // Disconnect the observer after reverting the changes
+                    observer.disconnect();
+                });
+    
+                // Configure the observer to watch for changes in the #result element
+                observer.observe(document.getElementById("result"), { childList: true });
+                
+                // Display the response in the result div
+                $('#result').text(response);
+    
+                // Add animation class to the image
+                $(".image").attr("src", "{{ url_for('static', filename='papukaija_miettii.png') }}")
+                $(".image").addClass("bounce");
             }
         });
-        // alert("This is a pop-up message.");
-        // Add animation class to the image
-        $(".image").attr("src", "{{ url_for('static', filename='papukaija_miettii.png') }}")
-        $(".image").addClass("bounce");
-        // Remove animation class after 1 second
-        setTimeout(function () {
-            $(".image").attr("src", "{{ url_for('static', filename='papukaija.png') }}")
-            $(".image").removeClass("bounce");
-        }, 700);
-    }
     </script>
 </head>
 <body>
