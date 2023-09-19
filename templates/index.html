@@ -5,12 +5,10 @@
             height: 100%;
             margin: 0;
         }
-
         #bottom_filler {
             height: 1.5em;
             margin-bottom: 1em;
         }
-
         #message-box, #result-box {
             display: flex;
             justify-content: space-between;
@@ -19,7 +17,6 @@
             border: 2px solid #000;
             border-radius: 10px;
         }
-
         #message, #result {
             width: 100%;
             height: 50%;
@@ -38,23 +35,19 @@
             font-size: 1em;
             resize: none;
         }
-
         #message:focus {
             outline: none !important;
             border: none;
             box-shadow: none;
         }
-
         #message::-webkit-resizer {
             display: none;
         }
-
         body {
             display: flex;
             justify-content: center;
             align-items: center;
         }
-
         .container {
             flex-direction: row;
             display: flex;
@@ -65,11 +58,9 @@
             box-sizing: border-box;
             margin-top: -10%;
         }
-
         .image {
             max-width: 15%;
         }
-
         .child {
             max-height: 600px;
             width: 45%;
@@ -78,7 +69,6 @@
             box-sizing: border-box;
             margin: 0 2.5em; /* Add margin here */
         }
-
         @keyframes bounce {
             0% {
                 transform: translateY(0);
@@ -93,12 +83,9 @@
                 transform: translateY(0);
             }
         }
-
         .bounce {
             animation: bounce 0.5s;
         }
-
-
     </style>
     <title>Flask Form Submission without Page Reload</title>
     <link rel="stylesheet" type="text/css" href="static/style.css">
@@ -106,12 +93,10 @@
     <script>
         $(document).ready(function () {
             var timeoutId; // Variable to store the timeout ID
-
             function handleChange() {
                 clearTimeout(timeoutId); // Clear any previous timeout
-                timeoutId = setTimeout(callFunction, 500); // Set a new timeout of 1 second
+                timeoutId = setTimeout(callFunction, 750); // Set a new timeout of 1 second
             }
-
             function callFunction() {
                 // get the form data
                 var formData = {
@@ -128,25 +113,29 @@
                 });
                 // alert("This is a pop-up message.");
 
-                // Add animation class to the image
+                // Animaatio - dinosaurus pomppii
+                $(".image").attr("src", "{{ url_for('static', filename='papukaija_miettii.png') }}")
                 $(".image").addClass("bounce");
-                // Remove animation class after 1 second
+
                 setTimeout(function () {
+                    $(".image").attr("src", "{{ url_for('static', filename='papukaija.png') }}")
                     $(".image").removeClass("bounce");
                 }, 700);
             }
-
             const textarea = document.getElementById("message"); // Replace "message" with the ID of your textarea element
             textarea.addEventListener("input", handleChange);
 
+            {#ENTERIÄ PAINETTAESSA SAMA - EI REFRESHIÄ#}
             $("#message").keypress(function (e) {
                 if (e.which === 13) {
                     e.preventDefault();
                     $(this).closest("form").submit();
                 }
             });
-          
+
+
             $('#message-box').on('submit', function (e) {
+                e.preventDefault();
                 callFunction();
             });
         });
@@ -155,13 +144,14 @@
 <body>
 <div class="container">
     <form id="message-box" class="child">
-        <span id="suomi_label">Suomeksi</span>
+        <span id="suomi_label">Englanniksi:</span>
         <textarea id="message" name="message" autofocus="autofocus" spellcheck="false"></textarea>
-        <button type="submit" id="bottom_filler">Submit</button>
+        <button id="bottom_filler">Submit</button>
     </form>
-    <img src="{{ url_for('static', filename='dino1.svg') }}" class="child image" alt="dino_image">
+
+    <img src="{{ url_for('static', filename='papukaija.png') }}" class="child image" alt="dino_image">
     <div id="result-box" class="child">
-        <span id="enkku_label">Englanniksi:</span>
+        <span id="enkku_label">Suomeksi:</span>
         <div id="result"></div>
         <span id="bottom_filler"></span>
     </div>
