@@ -25,7 +25,7 @@ def submit():
 
    kaannos = pipe(kaannos_pyynto)
 
-   return f'{kaannos}'
+   return kaannos[0]['translation_text']
 
 if __name__ == '__main__':
    app.run(debug=True)
