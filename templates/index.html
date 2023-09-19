@@ -143,6 +143,7 @@
             $("#message").keypress(function (e) {
                 if (e.which === 13) {
                     event.stopPropagation();
+                  this.value = this.value + "\n"; // Toimii Firefoxilla nyt??
                 }
             });
             $('#message-box').on('submit', function (e) {
